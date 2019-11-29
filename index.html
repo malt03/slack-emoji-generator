@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Emoji Generator</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="content">
+      <div>
+        <canvas id="canvas" width="128" height="128"></canvas>
+      </div>
+      <div>
+        <textarea id="emoji">絵文&#13;字</textarea>
+        <div>
+          <input id="front" name="front" type="color">
+          <label for="front">front</label>
+        </div>
+        <div>
+          <input id="background" name="background" type="color" value="#FFFFFF">
+          <label for="background">background</label>
+        </div>
+        <div>
+          <input id="family" name="family" type="text" value="sans-serif">
+          <label for="family">font family</label>
+        </div>
+        <div>
+          <input id="weight" name="weight" type="text" value="bold">
+          <label for="weight">font weight</label>
+        </div>
+        <a id="download"><Button>Download</Button></a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

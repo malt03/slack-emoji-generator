@@ -1,0 +1,9 @@
+#canvas {
+  border: solid gray 1px;
+}
+
+#emoji {
+  width: 64px;
+  height: 64px;
+  text-align: center;
+}
