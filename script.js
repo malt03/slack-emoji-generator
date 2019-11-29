@@ -11,28 +11,32 @@ window.onload = function() {
 function update() {
   const emoji = document.getElementById('emoji').value;
   const emojiTexts = emoji.split('\n');
-  const lineNumber = emojiTexts.length;
 
   const family = document.getElementById('family').value;
   const weight = document.getElementById('weight').value;
-  const height = getCanvasTextHeight(emoji, weight, family);
-  const size = (128 - (lineNumber - 1) * 2) * height.heightRatio / lineNumber;
 
-  const descent = size * height.descent;
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
-  const font = `${weight} ${size}pt ${family}`;
+
 
   ctx.textAlign = 'center';
-  ctx.font = font;
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = document.getElementById('background').value;
   ctx.fillRect(0, 0, 128, 128);
   ctx.fillStyle = document.getElementById('front').value;
 
-  const lineHeight = 128 / lineNumber + 1;
+  const lineNumber = emojiTexts.length;
+  const lineHeight = 130 / lineNumber;
   for (const i in emojiTexts) {
     const emojiText = emojiTexts[lineNumber - i - 1];
+
+    const height = getCanvasTextHeight(emojiText, weight, family);
+    const size = (128 - (lineNumber - 1) * 2) * height.heightRatio / lineNumber;
+    const descent = size * height.descent;
+    const font = `${weight} ${size}pt ${family}`;
+    ctx.font = font;
+
     ctx.fillText(emojiText, 64, 128 - descent - lineHeight * i, 128);
   }
 
