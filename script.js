@@ -1,11 +1,23 @@
-window.onload = function() {
-  document.getElementById('emoji').addEventListener('input', () => { this.update(); });
-  document.getElementById('front').addEventListener('input', () => { this.update(); });
-  document.getElementById('background').addEventListener('input', () => { this.update(); });
-  document.getElementById('weight').addEventListener('input', () => { this.update(); });
-  document.getElementById('family').addEventListener('input', () => { this.update(); });
+window.onload = function () {
+  const ids = [
+    'emoji',
+    'front',
+    'background',
+    'weight',
+    'family',
+  ];
 
-  this.update();
+  for (const id of ids) {
+    const element = document.getElementById(id);
+    element.addEventListener('input', (e) => {
+      localStorage.setItem(e.target.id, e.target.value);
+      this.update(e);
+    });
+    const saved = localStorage.getItem(id);
+    if (saved) { element.value = saved; }
+  }
+
+  update();
 };
 
 function update() {
@@ -17,7 +29,6 @@ function update() {
 
   const canvas = document.getElementById('canvas');
   const ctx = canvas.getContext('2d');
-
 
   ctx.textAlign = 'center';
 
