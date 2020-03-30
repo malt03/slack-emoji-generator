@@ -3,6 +3,7 @@ window.onload = function () {
     'emoji',
     'front',
     'background',
+    'clear-color',
     'weight',
     'family',
   ];
@@ -33,8 +34,12 @@ function update() {
   ctx.textAlign = 'center';
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = document.getElementById('background').value;
-  ctx.fillRect(0, 0, 128, 128);
+
+  document.getElementById('background').disabled = document.getElementById('clear-color').checked;
+  if (!document.getElementById('clear-color').checked) {
+    ctx.fillStyle = document.getElementById('background').value;
+    ctx.fillRect(0, 0, 128, 128);
+  }
   ctx.fillStyle = document.getElementById('front').value;
 
   const lineNumber = emojiTexts.length;
