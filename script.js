@@ -11,11 +11,21 @@ window.onload = function () {
   for (const id of ids) {
     const element = document.getElementById(id);
     element.addEventListener('input', (e) => {
-      localStorage.setItem(e.target.id, e.target.value);
+      if (e.target.id === 'clear-color') {
+        localStorage.setItem(e.target.id, e.target.checked);
+      } else {
+        localStorage.setItem(e.target.id, e.target.value);
+      }
       this.update(e);
     });
     const saved = localStorage.getItem(id);
-    if (saved) { element.value = saved; }
+    if (saved) {
+      if (element.id === 'clear-color') {
+        element.checked = saved === 'true';
+      } else {
+        element.value = saved;
+      }
+    }
   }
 
   update();
